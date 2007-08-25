@@ -1,9 +1,9 @@
 
 Summary:	A preprocessor to generate LaTeX code from literate Haskell sources
 Name:		lhs2tex
-Version:	1.9
-Release:	%mkrel 2
-Source0:	%{name}-%{version}.tar.bz2
+Version:	1.12
+Release:	%mkrel 1
+Source0:	http://people.cs.uu.nl/andres/lhs2tex/%{name}-%{version}.tar.bz2
 License: 	GPL
 Group:		Development/Other
 Url:		http://www.cs.uu.nl/~andres/lhs2tex/
