@@ -8,7 +8,8 @@ License: 	GPL
 Group:		Development/Other
 Url:		http://www.cs.uu.nl/~andres/lhs2tex/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires: ghc
+BuildRequires:	ghc
+BuildRequires:	tetex
 
 %description
 lhs2TeX is a preprocessor to generate LaTeX code from literate Haskell sources.
