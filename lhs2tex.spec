@@ -7,6 +7,7 @@ Source0:	http://people.cs.uu.nl/andres/lhs2tex/%{name}-%{version}.tar.bz2
 License: 	GPL
 Group:		Development/Other
 Url:		http://www.cs.uu.nl/~andres/lhs2tex/
+BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	ghc
 BuildRequires:	tetex
 
