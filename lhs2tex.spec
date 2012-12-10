@@ -1,58 +1,44 @@
+#% global debug_package %{nil}
+#% define _cabal_setup Setup.lhs
+%define _no_haddock 1
+%define module lhs2tex
+Name:           %{module}
+Version:        1.18.1
+Release:        1
+Summary:        Preprocessor for typesetting Haskell sources with LaTeX
+Group:          Development/Other
+License:        GPLv2+
+URL:            http://hackage.haskell.org/package/%{module}
+Source0:        http://hackage.haskell.org/packages/archive/%{module}/%{version}/%{module}-%{version}.tar.gz
 
-Summary:	A preprocessor to generate LaTeX code from literate Haskell sources
-Name:		lhs2tex
-Version:	1.12
-Release:	%mkrel 4
-Source0:	http://people.cs.uu.nl/andres/lhs2tex/%{name}-%{version}.tar.bz2
-License: 	GPL
-Group:		Development/Other
-Url:		http://www.cs.uu.nl/~andres/lhs2tex/
-BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	ghc
-BuildRequires:	tetex
+BuildRequires:  ghc, ghc-devel, haskell-macros, haddock
+buildrequires:  haskell(regex-compat)
+buildrequires:  dblatex
+Requires(pre):  ghc
+requires(pre):  haskell(regex-compat)
 
 %description
-lhs2TeX is a preprocessor to generate LaTeX code from literate Haskell sources.
-
-lhs2TeX includes the following features:
-
- * Different styles to process your source file: for instance, "tt" style uses
-a monospaced font for the code while still allowing you to highlight keywords
-etc, whereas "poly" style uses proportional fonts for identifiers, handles
-indentation nicely, is able to replace binary operators by mathematical symbols
-and take care of complex horizontal alignments.
- * Formatting directives, which let you customize the way certain tokens in the
-source code should appear in the processed output.
- * A liberal parser that can handle most of the language extensions; you don't
-have to restrict yourself to Haskell 98.
- * Preprocessor-style conditionals that allow you to generate different
-versions of a document from a single source file (for instance, a paper and a
-presentation).
- * Active documents: you can use Haskell to generate parts of the document
-(useful for papers on Haskell).
- * A manual explaining all the important aspects of lhs2TeX.
-
+Preprocessor for typesetting Haskell sources with LaTeX
 
 %prep
-%setup -q
+%setup -q -n %{module}-%{version}
 
 %build
-
-%configure
-%make
+%_cabal_compil
 
 %install
-rm -rf $RPM_BUILD_ROOT
+%_cabal_install
+%_cabal_rpm_gen_deps
 
-make install DESTDIR=$RPM_BUILD_ROOT
-mv $RPM_BUILD_ROOT/usr/local/share/texmf $RPM_BUILD_ROOT/%{_datadir}
-
-%clean
-rm -rf $RPM_BUILD_ROOT
+%check
+%_cabal_check
 
 %files
-%defattr(-,root,root)
-%{_bindir}/*
-%{_datadir}/*
-%doc Examples/ LICENSE RELEASE doc/Guide2.pdf 
+%defattr(-,root,root,-)
+%{_docdir}/%{module}-%{version}
+%_cabal_rpm_deps_dir
+%{_datadir}/%{module}-%{version}
+%{_mandir}/man1/*
+%{_bindir}/lhs2TeX
+
 
