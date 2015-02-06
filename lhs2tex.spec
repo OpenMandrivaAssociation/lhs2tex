@@ -4,7 +4,7 @@
 %define module lhs2tex
 Name:           %{module}
 Version:        1.18.1
-Release:        1
+Release:        2
 Summary:        Preprocessor for typesetting Haskell sources with LaTeX
 Group:          Development/Other
 License:        GPLv2+
